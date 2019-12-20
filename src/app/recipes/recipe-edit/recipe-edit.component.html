@@ -1,0 +1,91 @@
+<h1>Edit Recipe</h1>
+
+<!-- Reactive Approach -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-5 col-md-4 col-sm-offset-1 col-md-offset-2">
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                <div class="user-data">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" name="name" type="text" formControlName="name" />
+                        <span class="warning-message" *ngIf="!editForm.get('name').valid && editForm.get('name').touched">Name is mandatory!</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" type="text" formControlName="description"
+                            rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imgPath">Image Path</label>
+                        <input class="form-control" name="imgPath" type="text" formControlName="imgPath" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><img src="" class="img-responsive"></div>
+                    </div>
+                    <strong>Needed Ingredients</strong>
+                    <div class="form-ingredients-container" formArrayName="ingredients">
+                        <button class="btn btn-primary" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6">
+                                    <label for="ingredientName">name</label>
+                            </div>
+                            <div class="col-xs-3">
+                                    <label for="ingredientAmount">amount</label>
+                            </div>
+                            <div class="col-xs-2">
+                                    <label for="deleteIngredientButton">delete</label>
+                            </div>
+                        </div>
+                        <div class="row form-group" *ngFor="let ingredientControl of getControls(); let i = index" [formGroupName]="i">
+                            <div class="col-xs-6">
+                                <input class="form-control" name="ingredientName" type="text" formControlName="name" />
+                            </div>
+                            <div class="col-xs-3">
+                                <input class="form-control" name="ingredientAmount" type="number" formControlName="amount" />
+                            </div>
+                            <div class="col-xs-2">
+                                <button class="btn btn-danger">X</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-success" type="submit" [disabled]="!editForm.valid">Save</button>
+                    <button class="btn btn-danger" type="button">cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Template Driven Approach -->
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-5 col-md-4 col-sm-offset-1 col-md-offset-2">
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                <div class="user-data">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" name="name" type="text" ngModel required />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" name="description" type="text" ngModel />
+                    </div>
+                    <div class="form-group">
+                        <label for="imgPath">Image Path</label>
+                        <input class="form-control" name="imgPath" type="text" ngModel />
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredient">Ingredients</label>
+                        <input class="form-control" name="ingredient" type="text" ngModel />
+                    </div>
+
+                    <button class="btn btn-default" type="submit" [disabled]="!form.valid">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->

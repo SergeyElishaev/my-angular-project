@@ -1,0 +1,23 @@
+input.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+
+.warning-message{
+    color: orange;
+    font-weight: bold;
+}
+
+.error-message{
+    color: red;
+    font-weight: bold;
+}
+
+.form-ingredients-container{
+    border: 1px dotted gray;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    max-height: 265px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
