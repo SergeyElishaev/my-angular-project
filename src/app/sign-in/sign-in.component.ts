@@ -10,6 +10,11 @@ export class SignInComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //TODO: Init the form
   }
 
+  onSubmit(){
+    console.log('SignIn form submitted');
+    //TODO: check username & password => generate token / show error
+  }
 }

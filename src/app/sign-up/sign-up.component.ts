@@ -22,4 +22,9 @@ export class SignUpComponent implements OnInit {
 
   }
 
+  onSubmit(){
+    console.log('SignUp form submitted');
+    //TODO: save the user
+  }
+
 }
