@@ -1,18 +1,32 @@
-input.ng-touched.ng-invalid{
+h2 {
+    color: grey;
+    text-align: center;
+}
+
+.img-preview {
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.img-preview:hover {
+    opacity: 0.8;
+}
+
+input.ng-touched.ng-invalid {
     border: 1px solid red;
 }
 
-.warning-message{
+.warning-message {
     color: orange;
     font-weight: bold;
 }
 
-.error-message{
+.error-message {
     color: red;
     font-weight: bold;
 }
 
-.form-ingredients-container{
+.form-ingredients-container {
     border: 1px dotted gray;
     border-radius: 8px;
     padding: 10px;

@@ -1,4 +1,4 @@
-<h1>Edit Recipe</h1>
+<h2>Edit Recipe</h2>
 
 <!-- Reactive Approach -->
 <div class="container">
@@ -6,6 +6,10 @@
         <div class="col-xs-6 col-sm-5 col-md-4 col-sm-offset-1 col-md-offset-2">
             <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                 <div class="user-data">
+                    <div class="button-container">
+                        <button class="btn btn-success width-50p" type="submit" [disabled]="!editForm.valid">Save</button>
+                        <button class="btn btn-danger width-50p" type="button" (click)="onCancelEdit()">cancel</button>
+                    </div>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input class="form-control" name="name" type="text" formControlName="name" />
@@ -18,10 +22,10 @@
                     </div>
                     <div class="form-group">
                         <label for="imgPath">Image Path</label>
-                        <input class="form-control" name="imgPath" type="text" formControlName="imgPath" />
+                        <input class="form-control" name="imgPath" type="text" formControlName="imgPath" #imagePath/>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12"><img src="" class="img-responsive"></div>
+                        <div class="col-xs-12"><img [src]="imagePath.value" class="img-responsive img-preview"></div>
                     </div>
                     <strong>Needed Ingredients</strong>
                     <div class="form-ingredients-container" formArrayName="ingredients">
@@ -46,13 +50,12 @@
                                 <input class="form-control" name="ingredientAmount" type="number" formControlName="amount" />
                             </div>
                             <div class="col-xs-2">
-                                <button class="btn btn-danger">X</button>
+                                <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
                             </div>
                         </div>
 
                     </div>
-                    <button class="btn btn-success" type="submit" [disabled]="!editForm.valid">Save</button>
-                    <button class="btn btn-danger" type="button">cancel</button>
+                    
                 </div>
             </form>
         </div>

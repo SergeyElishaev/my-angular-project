@@ -7,8 +7,20 @@ export class ShoppingListService {
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
-        new Ingredient('Tomatos', 10)
+        new Ingredient('Tomatoes', 10)
     ];
+    
+    isIngredientExist(name: string){
+        let result = false;
+
+        this.ingredients.forEach(ingredient => {
+            if (ingredient.name === name){
+                result = true;
+            }
+        });
+
+        return result;
+    }
 
     getIngredients() {
         return this.ingredients.slice();
@@ -17,6 +29,17 @@ export class ShoppingListService {
     getIngredient(index: number) {
         return this.ingredients[index];
     }
+
+    getIngredientIndexByName(name: string){
+        for(let i = 0; i < this.ingredients.length; i++){
+            if(this.ingredients[i].name === name){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     updateIngredient(index: number, newIngredient: Ingredient) {
         this.ingredients[index] = newIngredient;
         this.ingredientsChanged.next(this.ingredients.slice());

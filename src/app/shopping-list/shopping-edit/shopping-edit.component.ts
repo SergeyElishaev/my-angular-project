@@ -42,9 +42,28 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     const newIngredient = new Ingredient(value.name, value.amount);
     
     if (this.editMode) {
-      this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient)
+      if(this.shoppingListService.isIngredientExist(newIngredient.name)){
+        alert("This name already exist.");
+      }
+      else{
+        this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient)
+      }
     } else {
-      this.shoppingListService.addIngredient(newIngredient);
+      if(this.shoppingListService.isIngredientExist(newIngredient.name)){
+        
+        this.editedItemIndex = this.shoppingListService.getIngredientIndexByName(newIngredient.name)
+        if(this.editedItemIndex >= 0){
+          confirm("this one already exist. The amount will be updated");
+          this.editedItem = this.shoppingListService.getIngredient(this.editedItemIndex);
+          this.shoppingListService.updateIngredient(this.editedItemIndex, newIngredient)
+        }
+        else{
+          alert("ERROR: Could not find index of an existing ingredient");
+        }
+      }
+      else{
+        this.shoppingListService.addIngredient(newIngredient);
+      }
     }
 
     this.editMode = false;
@@ -53,6 +72,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   onClear(){
     this.shoppingListForm.reset();
     this.editMode = false;
+    this.editedItem = undefined;
+    this.editedItemIndex = -1;
   }
 
   onDelete(){

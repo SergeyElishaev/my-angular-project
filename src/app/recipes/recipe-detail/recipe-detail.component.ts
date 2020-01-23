@@ -14,12 +14,10 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => { 
-        this.id = +params['id'] 
-        this.recipe = this.recipeService.getRecipe(this.id);
-      }
-    );
+    this.route.params.subscribe((params: Params) => {
+      this.id = +params['id']
+      this.recipe = this.recipeService.getRecipe(this.id);
+    });
   }
 
   onMenuItemClick(recipe: Recipe, itemClicked: string) {
@@ -27,7 +25,14 @@ export class RecipeDetailComponent implements OnInit {
       case 'toShoppingList':
         this.onAddToShoppingList(recipe);
         break;
+      case 'editRecipe':
+        this.onEditRecipe();
+        break;
+      case 'deleteRecipe':
+        this.onDeleteRecipe(this.id);
+        break;
       default:
+        console.warn('this action is not implemented yet');
         break;
     }
   }
@@ -36,7 +41,16 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.addIngredientsToShoppingList(recipe.ingredients);
   }
 
-  onEditRecipe(){
-    this.router.navigate(['edit'], {relativeTo: this.route});
+  onEditRecipe() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  onDeleteRecipe(index: number) {
+    this.recipeService.deleteRecipe(index);
+    this.router.navigate(['recipes']);
+  }
+
+  onDeleteIngredient(index: number) {
+
   }
 }

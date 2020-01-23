@@ -2,3 +2,7 @@
 a{
     cursor: pointer;
 }
+
+.width-50p{
+    width: 50%;
+}

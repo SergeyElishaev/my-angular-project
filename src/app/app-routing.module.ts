@@ -10,23 +10,24 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
-    {path: '', component: MainComponent},
-    {path: 'home', component: MainComponent},
-    {path: 'recipes', component: RecipesComponent, children: [
-      {path: '', component: RecipeStartComponent},
-      {path: 'new', component: RecipeEditComponent},
-      {path: ':id', component: RecipeDetailComponent},
-      {path: ':id/edit', component: RecipeEditComponent},
-      {path: '**', redirectTo: ''}
-    ]},
-    {path: 'shopping-list', component: ShoppingListComponent},
-    {path: 'error-page', component: ErrorPageComponent, data: {message: 'Page not found!'}},
-    {path: 'sign-up', component: SignUpComponent},
-    {path: '**', redirectTo: '/error-page'}
-  ];
-  
+  { path: '', component: MainComponent},
+  {
+    path: 'recipes', component: RecipesComponent, data: { title: 'Recipes' }, children: [
+      { path: '', component: RecipeStartComponent },
+      { path: 'new', component: RecipeEditComponent },
+      { path: ':id', component: RecipeDetailComponent },
+      { path: ':id/edit', component: RecipeEditComponent },
+      { path: '**', redirectTo: '' }
+    ]
+  },
+  { path: 'shopping-list', component: ShoppingListComponent, data: { title: 'Shopping List' }  },
+  { path: 'error-page', component: ErrorPageComponent, data: { title: 'Oops...', message: 'Page not found!' } },
+  { path: 'sign-up', component: SignUpComponent, data: { title: 'Sign Up' }  },
+  { path: '**', redirectTo: '/error-page' }
+];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
