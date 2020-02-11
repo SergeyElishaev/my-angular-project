@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Params, Data, Router, NavigationEnd, Routes } from '@angular/router';
 import { map, filter } from 'rxjs/operators';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,11 @@ import { map, filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   title: string;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.autoLogin();
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
     ).subscribe(() => {

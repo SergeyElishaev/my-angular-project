@@ -1,0 +1,35 @@
+<h1>Registration</h1>
+<div class="container">
+    <div class="row">
+        <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input class="form-control" type="text" name="username" ngModel required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" ngModel>
+            </div>
+            <!-- <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <div class="radio">
+                            <label><input class="" type="radio" name="gender" value="male" formControlName="gender">male</label>
+                        </div>
+                        <div class="radio">
+                            <label><input class="" type="radio" name="gender" value="female" formControlName="gender">female</label>
+                        </div>
+                    </div> -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="password">Repeat Password</label>
+                <input class="form-control" type="password" name="password" ngModel>
+            </div>
+            <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+            <button class="btn btn-primary" *ngIf="!isLoading" [disabled]="!signUpForm.valid">Sign Up</button>
+            <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+        </form>
+    </div>
+</div>
