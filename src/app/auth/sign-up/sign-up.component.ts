@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class SignUpComponent implements OnDestroy {
   isLoading = false;
   error: string;
-  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
+  @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
 
   private closeSubscription: Subscription;
 

@@ -15,7 +15,7 @@ export class SignInComponent implements OnDestroy {
   isLoggedIn = false;
   isLoading = false;
   error: string;
-  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
+  @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
 
   private closeSubscription: Subscription;
 

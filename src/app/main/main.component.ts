@@ -7,7 +7,8 @@ import { User } from '../auth/user.model';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  user: User;
+  
   constructor() { }
 
   ngOnInit() {
