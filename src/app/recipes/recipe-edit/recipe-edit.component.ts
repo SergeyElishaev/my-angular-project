@@ -85,7 +85,12 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onCancelEdit() {
-    this.router.navigate(['recipes', this.id]);
+    if(this.editMode){
+      this.router.navigate(['recipes', this.id]);
+    }
+    else{
+      this.router.navigate(['recipes']);
+    }
   }
 
   onAddIngredient() {
