@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
-import { JsonPipe } from '@angular/common';
 
 interface AuthResponseData {
     kind: string;
@@ -134,7 +133,7 @@ export class AuthService {
         const user = new User(email, userId, token, expirationDate);
 
         this.user.next(user);
-        this.autoLogout(expiresIn * 1000);
+         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
     }
 }
